@@ -9,9 +9,10 @@ import Image from 'next/image';
 type FormWrapperProps = {
     children: React.ReactNode;
     headerLabel: string;
-    backButtonText: string;
+    backButtonText?: string;
     backButtonLabel: string;
     backButtonHref: string;
+    showSocial?: boolean;
 };
 
 const FormWrapper = ({
@@ -20,6 +21,7 @@ const FormWrapper = ({
     backButtonText,
     backButtonLabel,
     backButtonHref,
+    showSocial = true
 }: FormWrapperProps) => {
     return (
         <div className="col-span-12 lg:col-span-5 xl:col-span-4 w-full h-screen flex items-center justify-center">
@@ -27,12 +29,12 @@ const FormWrapper = ({
                 <LogoSection />
                 <h4 className="text-lg md:text-xl font-semibold leading-7">{headerLabel}</h4>
                 <div className="w-full mt-2">{children}</div>
-                    <div className="w-full my-8 grid grid-cols-3 items-center gap-x-2 text-xs text-center font-medium">
+                    {showSocial && <div className="w-full my-8 grid grid-cols-3 items-center gap-x-2 text-xs text-center font-medium">
                         <Separator />
                         <span>Or sign in with</span>
                         <Separator />
-                    </div>
-                 <AuthWithSocial />
+                    </div>}
+                 {showSocial && <AuthWithSocial />}
                 <BackButton text={backButtonText} label={backButtonLabel} href={backButtonHref} />
             </div>
         </div>

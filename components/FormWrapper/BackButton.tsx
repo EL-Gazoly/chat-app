@@ -1,6 +1,6 @@
 import Link from "next/link";
 type BackButtonProps = {
-    text: string;
+    text?: string;
     href: string;
     label: string;
 };
