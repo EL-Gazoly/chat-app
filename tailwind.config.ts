@@ -26,7 +26,7 @@ const config = {
         "text-primary": "#1A1A1A",
         "sub-text": "#808080",
         "link": "#007AFF",
-        border: "hsl(var(--border))",
+        border: "#E2E8F0",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",

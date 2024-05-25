@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Inter } from "next/font/google";
+
 import { cn } from "@/lib/utils";
 
 type UserCardProps = {
   width: number;
 };
-
-const inter = Inter({
-  weight: ["400", "500", "600", "700"],
-  subsets: ["latin"],
-});
-
 const UserCard = ({ width }: UserCardProps) => {
 
 
@@ -19,7 +13,6 @@ const UserCard = ({ width }: UserCardProps) => {
     <div
       className={cn(
         " cursor-pointer w-full flex items-center gap-x-4 p-3 transition-all  rounded-xl",
-        inter.className,
         width > 307 ? "" : "justify-center",
         width > 256 ? "hover:bg-[#CBD5E0]" : ""
       )}

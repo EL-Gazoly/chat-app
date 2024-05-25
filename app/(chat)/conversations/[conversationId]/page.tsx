@@ -1,8 +1,18 @@
+import RecievertHeader from "./_components/RecieverHeader";
+import ChatPage from "./_components/Chat";
+import SendMessage from "./_components/sendMessage";
 const ConversationPage = () => {
     return ( 
-        <div>
-            <h1>Conversation Page</h1>
+        <div className=" flex-1 min-w-[390px] h-full border-r border-border
+            flex flex-col pb-6 justify-between items-center
+        ">
+            <div className=" w-full flex flex-col gap-y-6">
+                <RecievertHeader />
+                <ChatPage />
+            </div>
+            <SendMessage />
         </div>
+           
      );
 }
  

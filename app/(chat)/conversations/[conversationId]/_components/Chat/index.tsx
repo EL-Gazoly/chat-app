@@ -1,4 +1,4 @@
-const ConversationsPage = () => {
+const ChatPage = () => {
     return ( 
         <div>
             
@@ -6,4 +6,4 @@ const ConversationsPage = () => {
      );
 }
  
-export default ConversationsPage;
+export default ChatPage;
