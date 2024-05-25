@@ -1,12 +1,9 @@
+"use client";
 import React from 'react';
 import Image from 'next/image';
 import LogoIcon from '@/assets/logo-Icon.svg';
 import LogoText from '@/assets/corporatica.svg';
-import { Separator } from '@/components/ui/separator';
-import AuthWithSocial from '@/components/FormWrapper/AuthWithSocial';
 import BackButton from './BackButton';
-import * as SignIn from '@clerk/elements/sign-in';
-import * as SignUp from '@clerk/elements/sign-up';
 
 type FormWrapperProps = {
   children: React.ReactNode;
@@ -31,22 +28,6 @@ const FormWrapper = ({
         <LogoSection />
         <h4 className="text-lg md:text-xl font-semibold leading-7">{headerLabel}</h4>
         <div className="w-full mt-2">{children}</div>
-        {showSocial && (
-          <div className="w-full my-8 grid grid-cols-3 items-center gap-x-2 text-xs text-center font-medium">
-            <Separator />
-            <span>Or sign in with</span>
-            <Separator />
-          </div>
-        )}
-        {backButtonLabel === 'Sign In' ? (
-          <SignIn.Root>
-            <AuthWithSocial />
-          </SignIn.Root>
-        ) : (
-          <SignUp.Root>
-            <AuthWithSocial />
-          </SignUp.Root>
-        )}
         <BackButton text={backButtonText} label={backButtonLabel} href={backButtonHref} />
       </div>
     </div>
