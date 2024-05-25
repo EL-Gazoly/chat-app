@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { ConvexClientProvider } from "./providers/ConvexClientProvider";
+import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
