@@ -18,13 +18,3 @@ export const authRoutes = [
     "/sign-in",
     "sign-up",
 ]
-
-
-/**
- * the deafult redirect route for authenticated users
- * @type {string}
- */
-
-export const DEFAULT_LOGIN_REDIRECT = "/"
-
-
