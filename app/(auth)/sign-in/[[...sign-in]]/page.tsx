@@ -2,7 +2,7 @@
 
 import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
-import FormWrapper from '@/components/FormWrapper';
+import FormWrapper from '@/app/(auth)/_components/FormWrapper';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import GoogleIcon from '@/assets/auth/google.svg';

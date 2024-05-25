@@ -4,7 +4,7 @@ import React from 'react';
 import * as Clerk from '@clerk/elements/common';
 import * as SignUp from '@clerk/elements/sign-up';
 import { Button } from '@/components/ui/button';
-import FormWrapper from '@/components/FormWrapper';
+import FormWrapper from '@/app/(auth)/_components/FormWrapper';
 
 export default function SignUpPage() {
   return (
