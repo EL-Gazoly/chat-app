@@ -50,7 +50,11 @@ const NavigationControlBar = () => {
     
     });
     return ( 
-        <div className=" w-[88px] h-full flex flex-col  justify-between items-center py-6 bg-white">
+        <div className=" z-10 min-w-[88px] flex flex-col  justify-between items-center py-6 bg-white"
+            style={{
+                boxShadow: "0px 0px 24px 0px rgba(0, 0, 0, 0.08)"
+            }}
+        >
             <div className=" flex flex-col items-center gap-y-10">
                 <Image src={Logo} alt="logo" className="  w-10 h-12 lg:w-12 lg:h-14" />
                 <div className="flex flex-col items-center gap-y-10">
