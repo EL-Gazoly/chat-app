@@ -25,19 +25,15 @@ const UserCard = ({ width }: UserCardProps) => {
         />
         <AvatarFallback className="w-12 h-12 rounded-xl bg-red-100">CN</AvatarFallback>
       </Avatar>
-      { width > 256 &&
+      { true &&
       <div className="flex-1 grid grid-cols-3 text-sm font-semibold">
-        <span className="col-span-2 text-black">
-            { width > 365?   "Elmer Laverty" : width > 260 ? "Elmer Laverty".substring(0, 5) + '...' : ""}
+        <span className="col-span-2 text-black line-clamp-1">
+            John Doe
         </span>
         
         { width > 338 && <span className="justify-self-end text-xs text-[#B2B2B2]">12 min</span>}
-        <span className={("col-span-3 text-black/40")}>
-         { width > 350?   "Hey, how are you?" : 
-            width > 311 ?     "Hey, how are you?".substring(0, 10) + '...'
-            :  "Hey, how are you?".substring(0, 5) 
-         
-         }
+        <span className="col-span-3 text-black/40 line-clamp-1 ">
+          Hey, how are you?
         </span>
       </div>}
     </div>

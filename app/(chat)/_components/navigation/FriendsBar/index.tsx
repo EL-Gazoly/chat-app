@@ -11,8 +11,8 @@ type NavigationFriendsBarProps = {
 }
 const NavigationFriendsBar = ({width} : NavigationFriendsBarProps) => {
     return ( 
-        <div className={cn(" pt-12 flex-1 px-6 pb-6 flex flex-col gap-y-10 ",
-                width > 307 ? ' bg-white' : ' bg-[#EDF2F7]'
+        <div className={cn(" ml-20 h-full pt-12 flex-1 pl-4 pr-6 pb-6 flex flex-col gap-y-10 ",
+                 ' bg-white'
             )}>
             <div className={cn(' flex items-center',
                     width > 307 ? ' justify-between'  : ' justify-center'
@@ -23,7 +23,7 @@ const NavigationFriendsBar = ({width} : NavigationFriendsBarProps) => {
                         <Image src={ArrowDown} alt="arrow" className="w-4 h-4" />
                     </div>
                 }
-                    <Image src={PlusIcon} alt="plus" className="cursor-pointer" />
+                    <Image src={PlusIcon} alt="plus" className="cursor-pointer mr-3" />
                 </div>
                     <div className=' w-full flex flex-col gap-y-3'>
                         { 
@@ -33,6 +33,8 @@ const NavigationFriendsBar = ({width} : NavigationFriendsBarProps) => {
 
                             </div>
                         }
+                        <UserCard width={width} />
+                        <UserCard width={width} />
                         <UserCard width={width} />
                         <UserCard width={width} />
                         <UserCard width={width} />

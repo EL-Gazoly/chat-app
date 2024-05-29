@@ -50,7 +50,7 @@ const NavigationControlBar = () => {
     
     });
     return ( 
-        <div className=" z-10 min-w-[88px] flex flex-col  justify-between items-center py-6 bg-white"
+        <div className=" fixed h-full z-10 min-w-[88px] flex flex-col  justify-between items-center py-6 bg-white"
             style={{
                 boxShadow: "0px 0px 24px 0px rgba(0, 0, 0, 0.08)"
             }}
