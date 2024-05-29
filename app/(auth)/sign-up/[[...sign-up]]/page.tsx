@@ -5,7 +5,10 @@ import * as Clerk from '@clerk/elements/common';
 import * as SignUp from '@clerk/elements/sign-up';
 import { Button } from '@/components/ui/button';
 import FormWrapper from '@/app/(auth)/_components/FormWrapper';
-
+import { Separator } from '@/components/ui/separator';
+import GoogleIcon from '@/assets/auth/google.svg';
+import GithubIcon from '@/assets/auth/github.svg';
+import Image from 'next/image';
 export default function SignUpPage() {
   return (
     <FormWrapper
@@ -41,6 +44,31 @@ export default function SignUpPage() {
           <SignUp.Action submit className="w-full">
             <Button className="w-full mt-4">Sign Up</Button>
           </SignUp.Action>
+          <div className="w-full my-8 grid grid-cols-3 items-center gap-x-2 text-xs text-center font-medium">
+            <Separator />
+            <span>Or sign in with</span>
+            <Separator />
+          </div>         
+           <div className="space-y-2">
+              <Clerk.Connection
+                name="google"
+                className='w-full'
+                >
+                  <Button className="w-full flex items-center gap-x-2 capitalize" variant="outline">
+                    <Image src={GoogleIcon} alt={"google-icon"} />
+                    <span>Google</span>
+                  </Button>
+              </Clerk.Connection>
+              <Clerk.Connection
+                name="github"
+                className='w-full'
+                >
+                  <Button className="w-full flex items-center gap-x-2 capitalize" variant="outline">
+                    <Image src={GithubIcon} alt={"github-icon"} />
+                    <span>Github</span>
+                  </Button>
+              </Clerk.Connection>
+            </div>
         </SignUp.Step>
 
         <SignUp.Step name="verifications" className="w-[360px] flex flex-col gap-y-4">
