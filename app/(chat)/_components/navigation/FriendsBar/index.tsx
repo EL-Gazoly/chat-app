@@ -11,7 +11,7 @@ type NavigationFriendsBarProps = {
 }
 const NavigationFriendsBar = ({width} : NavigationFriendsBarProps) => {
     return ( 
-        <div className={cn(" ml-20 h-full pt-12 flex-1 pl-4 pr-6 pb-6 flex flex-col gap-y-10 ",
+        <div className={cn(" overflow-y-auto h-full pt-12 flex-1 pl-4 pb-6 flex flex-col gap-y-10 ",
                  ' bg-white'
             )}>
             <div className={cn(' flex items-center',
@@ -23,7 +23,7 @@ const NavigationFriendsBar = ({width} : NavigationFriendsBarProps) => {
                         <Image src={ArrowDown} alt="arrow" className="w-4 h-4" />
                     </div>
                 }
-                    <Image src={PlusIcon} alt="plus" className="cursor-pointer mr-3" />
+                    <Image src={PlusIcon} alt="plus" className="cursor-pointer mr-2" />
                 </div>
                     <div className=' w-full flex flex-col gap-y-3'>
                         { 

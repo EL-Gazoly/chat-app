@@ -7,7 +7,7 @@ const SearchIcon = ({color} : {color : string}) => {
             4.78249C17.3354 3.90033 16.2881 3.20056 15.1355 2.72314C13.9829 2.24572 12.7476 2 11.5 2C8.98044 
             2 6.56408 3.00089 4.78249 4.78249C3.00089 6.56408 2 8.98044 2 11.5C2 14.0196 3.00089 16.4359 4.78249
              18.2175C6.56408 19.9991 8.98044 21 11.5 21V21Z"
-              stroke={color} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              stroke={color} stroke-width="1.5" stroke-linecap="round" strokeLinejoin="round"/>
         </svg>
      );
 }

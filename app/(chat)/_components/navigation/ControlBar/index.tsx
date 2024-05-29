@@ -5,6 +5,8 @@ import SearchIcon from "./SearchIcon";
 import SettingsIcon from "./SettingsIcon";
 import Image from "next/image";
 import { useReducer } from "react";
+import { SignInButton, UserButton } from "@clerk/clerk-react";
+ import { Authenticated, Unauthenticated } from "convex/react";
 
 type State = {
     isArchive: boolean;
@@ -50,7 +52,7 @@ const NavigationControlBar = () => {
     
     });
     return ( 
-        <div className=" fixed h-full z-10 min-w-[88px] flex flex-col  justify-between items-center py-6 bg-white"
+        <div className=" overflow-y-hidden h-full z-10 min-w-[88px] flex flex-col  justify-between items-center py-6 bg-white"
             style={{
                 boxShadow: "0px 0px 24px 0px rgba(0, 0, 0, 0.08)"
             }}
@@ -69,7 +71,15 @@ const NavigationControlBar = () => {
                     </div>
                 </div>
             </div>
-              <SettingsIcon  color="black"/>
+           
+                <div className=" cursor-pointer z-[999999]">
+                    <Authenticated>
+                        <UserButton />
+                    </Authenticated>
+                    <Unauthenticated>
+                        <SignInButton />
+                    </Unauthenticated>
+                </div>
 
         </div>
      );
