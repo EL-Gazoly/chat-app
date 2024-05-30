@@ -2,10 +2,8 @@ import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/clerk-react";
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 
-import Link from "next/link";
-import Image from "next/image";
 import FileLink from "./FileLink";
 type ChatPageProps = {
     chatId : string

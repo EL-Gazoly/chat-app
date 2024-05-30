@@ -9,7 +9,6 @@ const ConversationInfo = () => {
             ">
                     Directory
             </div>
-            <TeamMembers />
             <FileCard />
 
         </div>

@@ -1,10 +1,8 @@
-import AttachIcon from '@/assets/chat/attach.svg'
 import SendIcon from '@/assets/chat/send.svg'
 import Image from 'next/image'
 import { use, useRef } from 'react'
 import { api } from '@/convex/_generated/api'
 import { useMutation } from 'convex/react'
-import { set } from 'react-hook-form'
 import UploadFileModal from '../UploadFileModal'
 const SendMessage = ({chatId, scrollToBottom, setMessage} : {chatId : string , scrollToBottom : () => void, setMessage : React.Dispatch<any>}) => {
     const messageRef = useRef<HTMLInputElement>(null)
