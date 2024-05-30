@@ -75,6 +75,8 @@ const UploadFileModal = () => {
             chatId: conversationId,
             url: res.url,
             type: fileState.file.type,
+            fileName: fileState.file.name,
+            size: fileState.file.size,
           });
           await sendMessage({
             chatId: conversationId,

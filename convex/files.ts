@@ -7,6 +7,8 @@ export const createFile = mutation({
         chatId : v.string(),
         type: v.string(),
         url: v.string(),
+        fileName : v.string(),
+        size : v.number(),
     },
     handler: async (ctx, args) => {
         const identity = await ctx.auth.getUserIdentity();
@@ -21,6 +23,8 @@ export const createFile = mutation({
             senderId: userId,
             type: args.type,
             url: args.url,
+            fileName: args.fileName,
+            size: args.size,
             createdAt: createdAt
         });
     },
@@ -33,5 +37,15 @@ export const getFiles = query({
             .query("files")
             .withIndex("by_chatId", (q) => q.eq("chatId", args.chatId))
             .collect();
+    },
+});
+
+export const getFile = query({
+    args: { url: v.string() },
+    handler: async (ctx, args) => {
+        return ctx.db
+            .query("files")
+            .withIndex("by_url", (q) => q.eq("url", args.url))
+            .unique();
     },
 });

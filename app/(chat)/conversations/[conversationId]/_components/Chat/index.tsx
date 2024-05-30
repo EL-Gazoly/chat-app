@@ -4,6 +4,9 @@ import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/clerk-react";
 import { useRef, useEffect } from "react";
 
+import Link from "next/link";
+import Image from "next/image";
+import FileLink from "./FileLink";
 type ChatPageProps = {
     chatId : string
     messageRef: React.RefObject<HTMLDivElement>
@@ -34,7 +37,13 @@ const ChatPage = ({ chatId, messageRef } : ChatPageProps) => {
                     )}
                     style={{ marginTop: gap }}
                 >
-                    <p>{message.content}</p>
+                    {
+                        message.content.startsWith('https://files.edgestore.dev/booewrmqgmudz2lk/publicFiles') ? 
+                            <FileLink content={message.content} />
+                        :
+                        <p>{message.content}</p>
+                    }
+                   
                 </div>
             );
         })}

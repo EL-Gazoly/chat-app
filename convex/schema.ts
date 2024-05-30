@@ -66,13 +66,16 @@ export default defineSchema({
         fileId : v.string(),
         chatId : v.string(),
         senderId: v.string(),
+        fileName : v.string(),
+        size : v.number(),
         type: v.string(),
         url: v.string(),
         createdAt: v.number()
     })
     .index("by_fileId", ["fileId"])
     .index("by_chatId", ["chatId"])
-    .index("by_senderId", ["senderId"]),
+    .index("by_senderId", ["senderId"])
+    .index("by_url", ["url"])
 
 })
 

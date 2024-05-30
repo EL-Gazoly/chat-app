@@ -8,7 +8,11 @@ const nextConfig = {
                 permanent: true,
             },
         ];
+    },
+    images: {
+        domains: ['files.edgestore.dev'],
     }
+    
 };
 
 export default nextConfig;
