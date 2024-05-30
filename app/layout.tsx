@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
+import { ReduxProvider } from "@/providers/ReduxProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,9 +18,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <ConvexClientProvider>
-          {children}
-        </ConvexClientProvider>
+        <ReduxProvider>
+            <ConvexClientProvider>
+              {children}
+            </ConvexClientProvider>
+        </ReduxProvider>
+       
       </body>
     </html>
   );
