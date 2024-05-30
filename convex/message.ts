@@ -6,7 +6,7 @@ import { Id } from "./_generated/dataModel";
 export const sendMessage = mutation({
    args: {
     messageId : v.string(),
-    chatId : v.id("chat"),
+    chatId : v.string(),
     content: v.string(),
     createdAt: v.number()
    },
@@ -29,7 +29,7 @@ export const sendMessage = mutation({
   });
 
 export const getMessages = query({
-    args: { chatId: v.id("chat") },
+    args: { chatId: v.string() },
     handler: async (ctx, args) => {
         return ctx.db
             .query("messages")

@@ -1,10 +1,14 @@
 "use client";
 import { configureStore  } from "@reduxjs/toolkit"
 import  TabReducer  from "./TabSlice"
-
+import ChatSlice from "./ChatSlice";
+import membersSlice from "./membersSlice";
 export const store = configureStore({
     reducer: {
-        tabs: TabReducer
+        tabs: TabReducer,
+        chat: ChatSlice,
+        members: membersSlice
+
     }
 })
 

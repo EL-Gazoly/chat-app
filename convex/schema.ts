@@ -43,8 +43,8 @@ export default defineSchema({
 
     messages : defineTable({
         messageId : v.string(),
-        chatId : v.id("chat"),
-        senderId: v.id("users"),
+        chatId : v.string(),
+        senderId: v.string(),
         content: v.string(),
         createdAt: v.number()
     })

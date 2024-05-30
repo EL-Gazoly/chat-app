@@ -51,17 +51,19 @@ export const getChats = query({
 })
 
 export const getChatMembers = query({
-    args : { chatId : v.id("chat") },
+    args : { chatId : v.string() },
     handler: async(ctx, args) => {
         const identity = await ctx.auth.getUserIdentity()
         if (!identity) {
             throw new Error("Unauthenticated")
         }
-        const userId = identity.subject as ExpressionOrValue<"users">
-        return ctx.db
+        const userId = identity.subject
+        console.log("userId", userId)
+        const members = ctx.db
         .query("chatMembers")
         .withIndex("by_chatId", (q) => q.eq("chatId", args.chatId))
         .filter((q) => q.neq("userId", userId))
-        
+        .collect()
+        return members
     }
 })

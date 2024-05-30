@@ -88,7 +88,6 @@ export const blockFriend = mutation({
         if (!identity) {
             throw new Error("Unauthenticated");
         }
-        console.log("this is identity",  identity);
         const userId = identity.subject as Id<"users">;
       return ctx.db
       .query("friends")
