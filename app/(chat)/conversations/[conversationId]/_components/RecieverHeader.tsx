@@ -15,8 +15,7 @@ type Reciever = {
     JoinedAt: number;
 }
 const RecievertHeader = ( {name , Reciever} : RecievertHeaderProps ) => {
-    const user = useQuery(api.users.getUserById, { id: Reciever?.userId ?? '' });
-    console.log(user)
+    const user = useQuery(api.users.getUserById, { id: Reciever?.userId ?? '' }); 
     return ( 
         <div className="flex items-center justify-between w-full bg-white p-6 border-b border-[#E2E8F0]">
             <div className="flex items-center gap-x-4">

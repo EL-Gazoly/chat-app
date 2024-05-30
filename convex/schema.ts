@@ -55,7 +55,7 @@ export default defineSchema({
 
     messageStatus: defineTable({
         messageId: v.string(),
-        userId: v.id("users"),
+        userId: v.string(),
         status: v.string(),
         updatedAt : v.number()
     })

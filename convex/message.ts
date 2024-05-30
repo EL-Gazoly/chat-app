@@ -5,10 +5,8 @@ import { Id } from "./_generated/dataModel";
 
 export const sendMessage = mutation({
    args: {
-    messageId : v.string(),
     chatId : v.string(),
     content: v.string(),
-    createdAt: v.number()
    },
     handler: async (ctx, args) => {
         const created_at = new Date();
@@ -17,11 +15,12 @@ export const sendMessage = mutation({
         if (!identity) {
             throw new Error("Unauthenticated");
         }
+        console.log(args.content);
         const senderId = identity.subject as Id<"users">;
-        
         const message = await ctx.db.insert("messages", { messageId: id, chatId: args.chatId, senderId: senderId, content: args.content, createdAt: created_at.getTime() })
         const members = await ctx.db.query("chatMembers").withIndex("by_chatId", (q) => q.eq("chatId", args.chatId)).collect();
         members.forEach(async (member) => {
+            if(member.userId === senderId) return;
             await ctx.db.insert("messageStatus", { messageId: id, userId: member.userId as Id<"users">, status: "sent", updatedAt: created_at.getTime() })
         });
         return message;

@@ -5,6 +5,7 @@ import SendMessage from "./_components/sendMessage";
 import { useParams } from "next/navigation";
 import { chat, reciever } from "@/types/chat.types";
 import ChatInfo from "@/app/(chat)/_components/ChatInfo";
+import { useRef, useEffect, useState } from "react";
 type UserCardProps = {
     width?: number;
     chatId: string;
@@ -16,7 +17,6 @@ type UserCardProps = {
 
 const ConversationPage = () => {
     const { conversationId } = useParams() as { conversationId: string };
-
    
     return ( 
         <div className=" flex-1 w-full h-full z-10">
@@ -25,26 +25,37 @@ const ConversationPage = () => {
            
      );
 }
-
-const ConversationPageElement = ({chatMembers, chatInfo} : UserCardProps) => {
-    return ( 
-        <div className="border-r border-border h-full
-            flex flex-col pb-6 justify-between items-center
-        ">
-            <div className=" w-full flex flex-col gap-y-6">
-                { chatMembers && chatInfo?.type === "one-to-one" ?
-                <RecievertHeader Reciever={chatMembers[0]} />
-                : 
-                <RecievertHeader name={chatInfo?.name} />   
-                }
-                
-                <ChatPage />
+const ConversationPageElement = ({ chatMembers, chatInfo }: UserCardProps) => {
+    const { conversationId } = useParams() as { conversationId: string };
+    const messageRef = useRef<HTMLDivElement>(null);
+    const [messages, setMessage] = useState<any>([]);
+    const scrollToBottom = () => {
+            messageRef.current?.scrollIntoView( { behavior: "smooth" });
+    };
+    useEffect(() => {
+      messageRef.current?.scrollIntoView();
+    }, [messages]);
+    return (
+        <div className="h-full flex flex-col overflow-hidden">
+            <div className="border-r border-border flex flex-col h-full">
+                <div className="flex-shrink-0">
+                    {chatMembers && chatInfo?.type === "one-to-one" ?
+                        <RecievertHeader Reciever={chatMembers[0]} />
+                        :
+                        <RecievertHeader name={chatInfo?.name} />
+                    }
+                </div>
+                <div className="flex-grow overflow-y-auto scroll-smooth">
+                    <ChatPage chatId={conversationId} messageRef={messageRef} />
+                </div>
+                <div className="flex-shrink-0">
+                    <SendMessage chatId={conversationId} scrollToBottom={scrollToBottom}
+                        setMessage={setMessage}
+                    />
+                </div>
             </div>
-            <SendMessage />
         </div>
-           
-     );
+    );
 }
-
 const EnhancedConversationPageElement = ChatInfo(ConversationPageElement);
 export default ConversationPage;
