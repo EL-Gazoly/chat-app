@@ -3,6 +3,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
+import { FilesMenu } from "./conversationInfo/FilesCard/FilesMenu";
 type RecievertHeaderProps = {
     name? : string;
     Reciever? : Reciever
@@ -27,6 +28,9 @@ const RecievertHeader = ( {name , Reciever} : RecievertHeaderProps ) => {
                 </Avatar>
                 <span className=" text-sm md:text-base lg:text-lg xl:text-xl font-semibold">{user? user.username : name}</span>
 
+            </div>
+            <div className=" lg:hidden">
+            <FilesMenu />
             </div>
            
         </div>

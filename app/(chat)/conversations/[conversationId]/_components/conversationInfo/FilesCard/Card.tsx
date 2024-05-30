@@ -63,7 +63,7 @@ const Card = ({ file }: CardProps) => {
 
     return (
         <Link href={file?.url} target="_blank" className="px-3 flex items-center justify-between">
-            <div className="flex items-center gap-x-4">
+            <div className="flex items-center gap-x-4 w-[300px]">
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl" style={{ backgroundColor: fileType.bgColor }}>
                    { fileType.label === "Text" ? <FileText size={24} className="w-6 h-6" /> :  <Image src={fileType.icon} alt={fileType.label} className="w-6 h-6" />}
                 </div>
