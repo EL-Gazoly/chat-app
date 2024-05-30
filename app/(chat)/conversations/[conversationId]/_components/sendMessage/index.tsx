@@ -5,6 +5,7 @@ import { use, useRef } from 'react'
 import { api } from '@/convex/_generated/api'
 import { useMutation } from 'convex/react'
 import { set } from 'react-hook-form'
+import UploadFileModal from '../UploadFileModal'
 const SendMessage = ({chatId, scrollToBottom, setMessage} : {chatId : string , scrollToBottom : () => void, setMessage : React.Dispatch<any>}) => {
     const messageRef = useRef<HTMLInputElement>(null)
     const sendMessage = useMutation(api.message.sendMessage)
@@ -24,7 +25,7 @@ const SendMessage = ({chatId, scrollToBottom, setMessage} : {chatId : string , s
 
     return ( 
         <div className=" w-full p-6 flex items-center gap-x-6">
-            <Image src={AttachIcon} alt="attach" className="cursor-pointer" />
+            <UploadFileModal />
             <div className=' w-full flex items-center justify-center rounded-xl px-5 border border-border'>
                 <input ref={messageRef} type="text" placeholder="Type a message" className=" w-full  rounded-xl break-words  focus:outline-none placeholder:text-[#929292] p-4"
                 onKeyDown={(e) => {

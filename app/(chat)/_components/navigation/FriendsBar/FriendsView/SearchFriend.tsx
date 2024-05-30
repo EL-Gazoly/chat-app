@@ -1,15 +1,13 @@
 "use client";
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog"
+Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  } from "@/components/ui/dialog"
   
   import { Button } from "@/components/ui/button"
   import { Input } from "@/components/ui/input"
@@ -31,26 +29,25 @@ const SearchFriend = () => {
         })
     }
   return (
-    <AlertDialog >
-        <AlertDialogTrigger className="flex items-center w-full justify-between px-4">
+    <Dialog >
+        <DialogTrigger className="flex items-center w-full justify-between px-4">
             <h6 className=' text-sm font-semibold'> Search Friend </h6>
             <Button variant={"outline"} className=' bg-slate-700 text-white'  size='sm' >Advance</Button>
 
-        </AlertDialogTrigger>
-        <AlertDialogContent className=" z-[999999]">
-                <AlertDialogHeader>
-                <AlertDialogTitle>Search Friend</AlertDialogTitle>
-                <AlertDialogDescription>
+        </DialogTrigger>
+        <DialogContent className=" z-[999999]">
+                <DialogHeader>
+                <DialogTitle>Search Friend</DialogTitle>
+                <DialogDescription className=" mt-2">
                     <Input placeholder='Search Friend by email' onChange={(e) => setUserEmail(e.target.value)}/>
-                 </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction onClick={handleSearch}>Search</AlertDialogAction>
-                </AlertDialogFooter>
-        </AlertDialogContent>
+                 </DialogDescription>
+                </DialogHeader>
+                <DialogFooter>
+                    <Button onClick={handleSearch}>Search</Button>
+                </DialogFooter>
+        </DialogContent>
 
-    </AlertDialog>
+    </Dialog>
   )
 }
 

@@ -4,14 +4,19 @@ import { cn } from "@/lib/utils";
 import { useUser } from "@clerk/clerk-react";
 import { useRef, useEffect } from "react";
 
-const ChatPage = ({ chatId, messageRef } : {chatId : string, messageRef: React.RefObject<HTMLDivElement>}) => {
+type ChatPageProps = {
+    chatId : string
+    messageRef: React.RefObject<HTMLDivElement>
+}
+const ChatPage = ({ chatId, messageRef } : ChatPageProps) => {
     const { user } = useUser();
     const messages = useQuery(api.message.getMessages, { chatId: chatId });
     const sortedMessages = messages?.sort((a, b) => a.createdAt - b.createdAt);
 
     useEffect(() => {
-        console.log(messageRef?.current);
-    }, [messageRef]);
+        messageRef.current?.scrollIntoView();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [messages]);
     
     return (
         <div className="flex flex-col p-4 overflow-y-auto">

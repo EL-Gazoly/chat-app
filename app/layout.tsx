@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
 import { ReduxProvider } from "@/providers/ReduxProvider";
+import { EdgeStoreProvider } from '@/lib/edgestore';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,7 +21,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={poppins.className}>
         <ReduxProvider>
             <ConvexClientProvider>
-              {children}
+                <EdgeStoreProvider>
+                    {children}
+                </EdgeStoreProvider>
             </ConvexClientProvider>
         </ReduxProvider>
        

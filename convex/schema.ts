@@ -60,7 +60,19 @@ export default defineSchema({
         updatedAt : v.number()
     })
     .index("by_messageId", ["messageId"])
-    .index("by_userId", ["userId"])
+    .index("by_userId", ["userId"]),
+
+    files : defineTable({
+        fileId : v.string(),
+        chatId : v.string(),
+        senderId: v.string(),
+        type: v.string(),
+        url: v.string(),
+        createdAt: v.number()
+    })
+    .index("by_fileId", ["fileId"])
+    .index("by_chatId", ["chatId"])
+    .index("by_senderId", ["senderId"]),
 
 })
 
