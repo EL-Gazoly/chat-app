@@ -1,23 +1,30 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 import { v4 as uuidv4 } from 'uuid';
+import { Id } from "./_generated/dataModel";
 
 export const sendMessage = mutation({
    args: {
     messageId : v.string(),
     chatId : v.id("chat"),
-    senderId: v.id("users"),
     content: v.string(),
     createdAt: v.number()
    },
     handler: async (ctx, args) => {
         const created_at = new Date();
         const id = uuidv4();
-        const message = await ctx.db.insert("messages", { messageId: id, chatId: args.chatId, senderId: args.senderId, content: args.content, createdAt: created_at.getTime() })
+        const identity =  await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthenticated");
+        }
+        const senderId = identity.subject as Id<"users">;
+        
+        const message = await ctx.db.insert("messages", { messageId: id, chatId: args.chatId, senderId: senderId, content: args.content, createdAt: created_at.getTime() })
         const members = await ctx.db.query("chatMembers").withIndex("by_chatId", (q) => q.eq("chatId", args.chatId)).collect();
         members.forEach(async (member) => {
-            await ctx.db.insert("messageStatus", { messageId: id, userId: member.userId, status: "sent", updatedAt: created_at.getTime() })
+            await ctx.db.insert("messageStatus", { messageId: id, userId: member.userId as Id<"users">, status: "sent", updatedAt: created_at.getTime() })
         });
+        return message;
     }
   });
 
@@ -32,7 +39,7 @@ export const getMessages = query({
 });
 
 export const getMessageStatus = query({
-    args: { messageId: v.id("messages"), userId: v.id("users") },
+    args: { messageId: v.id("messages") },
     handler: async (ctx, args) => {
         return ctx.db
             .query("messageStatus")
@@ -42,7 +49,7 @@ export const getMessageStatus = query({
 });
 
 export const updateMessageStatus = mutation({
-    args: { messageId: v.id("messageStatus"), userId: v.id("users"), status: v.string(), updatedAt: v.number() },
+    args: { messageId: v.id("messageStatus"), status: v.string(), updatedAt: v.number() },
     handler: async (ctx, args) => {
         ctx.db.patch(args.messageId , { status: args.status, updatedAt: args.updatedAt })
     }

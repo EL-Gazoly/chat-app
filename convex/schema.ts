@@ -5,19 +5,23 @@ export default defineSchema({
         username: v.string(),
         imageUrl: v.string(),
         clrekId: v.string(),
-        email: v.string()
+        email: v.string(),
     })
     .index("by_email", ["email"])
     .index("by_clrekId", ["clrekId"])
-    .index("by_username", ["username"]),
+    .index("by_username", ["username"])
+    .searchIndex("search_username", {
+        searchField: "username",
+    }),
 
     friends : defineTable({
-        friendRequest : v.id("friends"),
-        userId: v.id("users"),
-        friendId: v.id("users"),
+        friendRequest : v.string(),
+        userId: v.string(),
+        friendId: v.string(),
         status: v.string(),
     })
-    .index("by_userId", ["userId"]),
+    .index("by_userId", ["userId"])
+    .index("by_friendId", ["friendId"]),
 
     chat : defineTable({
         chatId : v.string(),
@@ -30,8 +34,8 @@ export default defineSchema({
     
 
     chatMembers : defineTable({
-        chatId : v.id("chat"),
-        userId: v.id("users"),
+        chatId : v.string(),
+        userId: v.string(),
         JoinedAt: v.number()
     })
     .index("by_chatId", ["chatId"])

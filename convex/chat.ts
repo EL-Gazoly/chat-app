@@ -1,5 +1,7 @@
 import { mutation, query } from "./_generated/server"
 import { v } from "convex/values"
+import { Id } from "./_generated/dataModel"
+import { ExpressionOrValue } from "convex/server"
 export const createChat = mutation({
     args : {
         chatId: v.id("chat"),
@@ -34,11 +36,15 @@ export const getChat = query({
 })
 
 export const getChats = query({
-    args : { userId : v.id("users") },
     handler: async(ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity()
+        if (!identity) {
+            throw new Error("Unauthenticated")
+        }
+        const userId = identity.subject as Id<"users">
         return ctx.db
         .query("chatMembers")
-        .withIndex("by_userId", (q) => q.eq("userId", args.userId))
+        .withIndex("by_userId", (q) => q.eq("userId", userId))
         .collect()
     }
 
@@ -47,9 +53,15 @@ export const getChats = query({
 export const getChatMembers = query({
     args : { chatId : v.id("chat") },
     handler: async(ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity()
+        if (!identity) {
+            throw new Error("Unauthenticated")
+        }
+        const userId = identity.subject as ExpressionOrValue<"users">
         return ctx.db
         .query("chatMembers")
         .withIndex("by_chatId", (q) => q.eq("chatId", args.chatId))
+        .filter((q) => q.neq("userId", userId))
         
     }
 })
