@@ -77,8 +77,20 @@ const Navigation = () => {
     }
   };
 
+  const extend = () => {
+    if (sidebarRef.current && navbarRef.current) {
+      setIsCollapsed(false);
+      setIsResetting(true);
+      sidebarRef.current.style.width = "437px";
+      navbarRef.current.style.width = `calc(100% - 437px)`;
+      navbarRef.current.style.left = "437px";
+      setTimeout(() => setIsResetting(false), 300);
+    }
+  }
+
   return (
     <div ref={ref} className="overflow-y-auto">
+    
       <aside
         ref={sidebarRef}
         className={cn(
@@ -97,8 +109,8 @@ const Navigation = () => {
           <DoubleArrowLeftIcon className="w-6 h-6" />
         </div>
         <div className="flex w-full h-full">
-          <NavigationControlBar/>
-          <NavigationFriendsBar width={width} />
+          <NavigationControlBar />
+          <NavigationFriendsBar width={width} extend={extend} />
         </div>
         <div
           onMouseDown={handleMouseDown}

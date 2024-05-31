@@ -2,16 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState, AppDispatch } from "@/store/store";
 import { setTab } from "@/store/TabSlice";
 import Logo from "@/assets/logo-Icon.svg";
-import ArchiveIcon from "./ArchiveIcon";
+import FriendsIcon from "./FriendsIcon";
 import MessageIcon from "./MessageIcon";
 import Image from "next/image";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 import { Authenticated, Unauthenticated } from "convex/react";
 import Link from "next/link";
 
-type TabType = "ARCHIVE" | "MESSAGE" | "SEARCH";
+type TabType = "FRIENDS" | "MESSAGE";
 
-const NavigationControlBar = () => {
+type NavigationControlBarProps = {
+    extend?: () => void
+};
+
+const NavigationControlBar = ({extend}: NavigationControlBarProps) => {
     const tab = useSelector((state: RootState) => state.tabs.tab);
     const dispatch = useDispatch<AppDispatch>();
 
@@ -31,8 +35,8 @@ const NavigationControlBar = () => {
                     <div className="cursor-pointer" onClick={() => handleTab("MESSAGE")}>
                         <MessageIcon color={tab === "MESSAGE" ? "#0D4EC8" : "black"} />
                     </div>
-                    <div className="cursor-pointer" onClick={() => handleTab("ARCHIVE")}>
-                        <ArchiveIcon color={tab === "ARCHIVE" ? "#0D4EC8" : "black"} />
+                    <div className="cursor-pointer" onClick={() => handleTab("FRIENDS")}>
+                        <FriendsIcon color={tab === "FRIENDS" ? "#0D4EC8" : "black"} />
                     </div>
                 </div>
             </div>

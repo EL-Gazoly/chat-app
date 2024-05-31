@@ -5,20 +5,13 @@ import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { FilesMenu } from "./conversationInfo/FilesCard/FilesMenu";
 import MobileNavigation from "@/app/(chat)/_components/MobileNavigation";
+import { reciever } from "@/types/chat.types";
 
 type RecievertHeaderProps = {
-    name?: string;
-    Reciever?: Reciever;
-}
-type Reciever = {
-    _id: Id<"chatMembers">;
-    _creationTime: number;
-    userId: string;
-    chatId: string;
-    JoinedAt: number;
+    Reciever?: reciever;
 }
 const RecievertHeader = ({ Reciever }: RecievertHeaderProps) => {
-    const user = useQuery(api.users.getUserById, { id: Reciever?.userId ?? '' });
+    const user = useQuery(api.users.getUserById, { id: Reciever?.clrekId ?? '' });
     return (
         <div className="flex items-center justify-between w-full bg-white p-6 border-b border-[#E2E8F0]">
             <div className="flex items-center gap-x-4">

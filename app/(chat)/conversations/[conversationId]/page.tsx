@@ -40,7 +40,7 @@ const ConversationPageElement = ({ reciever }: UserCardProps) => {
     <div className="h-full flex flex-col overflow-hidden">
       <div className="border-r border-border flex flex-col h-full">
         <div className="flex-shrink-0">
-          <RecievertHeader name={reciever?.username} />
+          <RecievertHeader Reciever={reciever} />
         </div>
         <div className="flex-grow overflow-y-auto overflow-x-hidden scroll-smooth">
           <ChatPage chatId={conversationId} messageRef={messageRef} />
