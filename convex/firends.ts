@@ -51,6 +51,7 @@ export const accpetFriendRequest = mutation({
             const friendRequest = args.friendRequest as Id<"friends">;
             const friendId = args.friendId as Id<"users">;
         await ctx.db.patch(friendRequest, { status: "accepted" });
+        await ctx.db.insert('friends', { friendRequest: uuidv4(), userId: userId, friendId: friendId, status: "accepted" });
         await ctx.db.insert('chat', { chatId: chatId, type: "one-to-one" });
         await ctx.db.insert('chatMembers', { chatId: chatId, userId: userId, JoinedAt: Date.now() });
         await ctx.db.insert('chatMembers', { chatId: chatId, userId: friendId, JoinedAt: Date.now() });

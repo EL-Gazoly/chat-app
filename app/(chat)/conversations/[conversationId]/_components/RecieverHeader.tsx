@@ -26,7 +26,7 @@ const RecievertHeader = ( {name , Reciever} : RecievertHeaderProps ) => {
                         {user ? user?.username.charAt(0) : name?.charAt(0)}
                     </AvatarFallback>
                 </Avatar>
-                <span className=" text-sm md:text-base lg:text-lg xl:text-xl font-semibold">{user? user.username : name}</span>
+                <span className=" text-sm md:text-base lg:text-lg xl:text-xl font-semibold capitalize">{user? user.username : name}</span>
 
             </div>
             <div className=" lg:hidden">

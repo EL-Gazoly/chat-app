@@ -67,3 +67,42 @@ export const getChatMembers = query({
         return members
     }
 })
+
+export const getMutualChat = query({
+    args: { friendId: v.string() },
+    handler: async (ctx, args) => {
+        // Authenticate the user
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthenticated");
+        }
+        
+        const userId = identity.subject;
+        const friendId = args.friendId;
+        
+        // Fetch chat memberships for both user and friend
+        const userChats = await ctx.db
+            .query("chatMembers")
+            .withIndex("by_userId", q => q.eq("userId", userId))
+            .collect();
+
+        const friendChats = await ctx.db
+            .query("chatMembers")
+            .withIndex("by_userId", q => q.eq("userId", friendId))
+            .collect();
+
+        // Extract chat IDs
+        const userChatIds = userChats.map(chat => chat.chatId);
+        const friendChatIds = friendChats.map(chat => chat.chatId);
+
+        // Find mutual chat IDs
+        const mutualChatId = userChatIds.find(chatId => friendChatIds.includes(chatId));
+
+        // Return the mutual chat ID or a message if not found
+        if (mutualChatId) {
+            return mutualChatId;
+        } else {
+            return "No mutual chat found";
+        }
+    }
+});

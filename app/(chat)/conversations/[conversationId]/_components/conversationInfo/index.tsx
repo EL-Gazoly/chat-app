@@ -1,5 +1,4 @@
 import FileCard from "./FilesCard";
-import TeamMembers from "./teamMembers";
 
 const ConversationInfo = () => {
     return ( 

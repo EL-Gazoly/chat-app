@@ -53,3 +53,14 @@ export const updateMessageStatus = mutation({
         ctx.db.patch(args.messageId , { status: args.status, updatedAt: args.updatedAt })
     }
 });
+
+export const getLastMessage = query({
+    args: { chatId: v.string() },
+    handler: async (ctx, args) => {
+        return ctx.db
+            .query("messages")
+            .withIndex("by_chatId", (q) => q.eq("chatId", args.chatId))
+            .order("desc")
+            .take(1)
+    }
+});

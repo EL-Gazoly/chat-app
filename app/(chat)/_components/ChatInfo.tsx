@@ -18,9 +18,7 @@ type ChatInfoProps = {
 
 type ChildProps = {
    width?: number;
-    chatMembers: chatMembers;
     messages: any;
-    chatInfo: any;
     chatId: string;
     reciever : reciever;
 }
@@ -29,21 +27,18 @@ const ChatInfo = (WrappedComponent: React.FC<ChildProps>): React.FC<ChatInfoProp
    
     const ChatInfoComponent: React.FC<ChatInfoProps> = ({ chatId, width }) => {
         const dispatch = useDispatch<AppDispatch>();
-        const user = useUser();
+        const {user} = useUser();
         const id = chatId as Id<"chat">;
         dispatch(getChatMembers(id));
         dispatch(getChats(chatId));
-
-        const chatMembers = useSelector((state: RootState) => state.members.members)?.filter((member) => member.userId !== user?.user?.id);
-        const messages = useQuery(api.message.getMessages, { chatId: chatId });
-        const chatInfo = useSelector((state: RootState) => state.chat.chats);
-        const reciever = useQuery(api.users.getUserById, { id: chatMembers ? chatMembers[0]?.userId : "" }) as reciever;
-        return (
+        const messages = useQuery(api.message.getLastMessage, { chatId: chatId });
+        const recieverId = useQuery(api.chat.getChatMembers, { chatId })?.filter((member: any) => member.userId !== user?.id)[0];
+        const reciever = useQuery(api.users.getUserById, { id: recieverId? recieverId.userId : '' });
+        console.log(messages)
+         return (
             <WrappedComponent 
                 chatId={chatId} 
-                chatMembers={chatMembers} 
                 messages={messages} 
-                chatInfo={chatInfo}
                 width={width}
                 reciever={reciever}
             />

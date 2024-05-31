@@ -1,4 +1,5 @@
 import Navigation from "@/app/(chat)/_components/navigation/navigation";
+import { Toaster } from "@/components/ui/sonner"
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 const inter = Inter({
@@ -14,6 +15,7 @@ const ChatPageLayout = ({children} : {children : React.ReactNode}) => {
             <Navigation />
             <div className="flex-1">
                {children}
+               <Toaster />
             </div>
 
         </div>
