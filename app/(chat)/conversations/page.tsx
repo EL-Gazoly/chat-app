@@ -1,8 +1,10 @@
 import MobileNavigation from "../_components/MobileNavigation";
 const ConversationsPage = () => {
     return ( 
-        <div className=" flex  w-full h-full p-6 gap-x-">
-            <MobileNavigation />
+        <div className=" flex  w-full h-full p-6 ">
+            <div className=" md:hidden">
+                <MobileNavigation />
+            </div>
             <div className="  flex-1  flex items-center justify-center text-muted-foreground">
 
                 <div className=" flex flex-col items-center gap-y-4">

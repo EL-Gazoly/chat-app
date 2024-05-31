@@ -36,7 +36,7 @@ const RecievertHeader = ( {name , Reciever} : RecievertHeaderProps ) => {
                 <span className=" text-sm md:text-base lg:text-lg xl:text-xl font-semibold capitalize">{user? user.username : name}</span>
 
             </div>
-            <div className=" lg:hidden">
+            <div className=" xl:hidden">
             <FilesMenu />
             </div>
            
