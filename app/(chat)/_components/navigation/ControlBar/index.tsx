@@ -34,9 +34,6 @@ const NavigationControlBar = () => {
                     <div className="cursor-pointer" onClick={() => handleTab("ARCHIVE")}>
                         <ArchiveIcon color={tab === "ARCHIVE" ? "#0D4EC8" : "black"} />
                     </div>
-                    <div className="cursor-pointer" onClick={() => handleTab("SEARCH")}>
-                        <SearchIcon color={tab === "SEARCH" ? "#0D4EC8" : "black"} />
-                    </div>
                 </div>
             </div>
 
