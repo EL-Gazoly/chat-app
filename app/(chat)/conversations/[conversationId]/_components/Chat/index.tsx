@@ -20,7 +20,7 @@ const ChatPage = ({ chatId, messageRef } : ChatPageProps) => {
     }, [messages]);
     
     return (
-        <div className="flex flex-col p-4 overflow-y-auto">
+        <div className="flex flex-col p-4 overflow-y-auto overflow-x-hidden">
         {sortedMessages?.map((message, index) => {
             const isUserMessage = message.senderId === user?.id;
             const isPreviousMessageSameSender = index > 0 && sortedMessages[index - 1].senderId === message.senderId;

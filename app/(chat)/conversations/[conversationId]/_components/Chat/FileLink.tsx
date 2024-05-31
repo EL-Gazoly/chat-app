@@ -73,7 +73,7 @@ const FileLink = ({ content } : {content : string}) => {
                 {renderLinkContent()}
             </Link>
             {fileType.label === 'PDF' || fileType.label === 'Text' || fileType.label === "Video" ? (
-                <div className="file-preview mt-4">
+                <div className="file-preview mt-4 flex items-center justify-center w-full">
                     <iframe src={content}></iframe>
                 </div>
             ) : ""}

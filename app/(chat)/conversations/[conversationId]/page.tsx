@@ -41,7 +41,7 @@ const ConversationPageElement = ({ reciever }: UserCardProps) => {
                         <RecievertHeader name={reciever?.username} />
                     
                 </div>
-                <div className="flex-grow overflow-y-auto scroll-smooth">
+                <div className="flex-grow overflow-y-auto overflow-x-hidden scroll-smooth">
                     <ChatPage chatId={conversationId} messageRef={messageRef} />
                 </div>
                 <div className="flex-shrink-0">

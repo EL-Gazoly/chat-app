@@ -49,12 +49,6 @@ const UserCard: React.FC<UserCardProps> = ({ chatId, width, reciever, messages }
     }
 }
 
-function formatTimestamp(timestamp: number): string {
-    const date = new Date(timestamp);
-    return date.toLocaleString();
-}
-console.log(messages.createdAt)
-
   
    return (
     <Link
@@ -74,7 +68,7 @@ console.log(messages.createdAt)
       </Avatar>
       <div className="flex-1 grid grid-cols-3 text-sm font-semibold">
         <span className="col-span-2 text-black line-clamp-1 uppercase">{reciever?.username}</span>
-        {width && width > 338 && <span className="justify-self-end text-xs text-[#B2B2B2]">{messages.length > 0? getTimeDifference( messages[0]?.createdAt ) : ""}</span>}
+        {width && width > 338 && <span className="justify-self-end text-xs text-[#B2B2B2]">{messages?.length > 0? getTimeDifference( messages[0]?.createdAt ) : ""}</span>}
         <span className="col-span-3 text-black/40 line-clamp-1">{messages? messages[0]?.content : ''}</span>
       </div>
     </Link>

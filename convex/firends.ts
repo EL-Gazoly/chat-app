@@ -14,7 +14,7 @@ export const addFriend = mutation({
         if (!identity) {
             throw new Error("Unauthenticated");
         }
-        const userId = identity.subject as Id<"users">;
+      const userId = identity.subject as Id<"users">;
       const friend = await ctx.db
       .query("users")
         .withIndex("by_email", (q) => q.eq("email", args.userEmail))
@@ -23,7 +23,18 @@ export const addFriend = mutation({
             throw new Error("User not found");
         }
         const friendId = friend.clrekId;
-      console.log(id, userId, friendId)
+      // check if friend request already exists
+      const friendRequestExists = await ctx.db
+      .query("friends")
+      .withIndex("by_friendId", (q) => q.eq("friendId", friendId))
+      .filter((f : any) => f.userId !== userId)
+      .filter((f : any) => f.status !== "pending")
+      .filter((f : any) => f.status !== "accepted")
+      .collect();
+      console.log("this is friendRequestExists", friendRequestExists);
+      if (friendRequestExists.length > 0) {
+        throw new Error("Friend request already exists");
+      }
      const friendRequest =  await ctx.db.insert('friends', {
         friendRequest: id,
         userId: userId,
@@ -33,6 +44,25 @@ export const addFriend = mutation({
       console.log("this is friendRequest", friendRequest);
         return friendRequest;
     }
+  });
+
+  export const checkIfFriend = query({
+    args : {
+        friendId: v.string(),
+    },
+    handler: async (ctx, args) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthenticated");
+        }
+        const userId = identity.subject as Id<"users">;
+      return ctx.db
+      .query("friends")
+      .withIndex("by_friendId", (q) => q.eq("friendId", args.friendId))
+      .filter((f : any) => f.userId === userId)
+      .unique();
+    }
+  
   });
 
 export const accpetFriendRequest = mutation({
