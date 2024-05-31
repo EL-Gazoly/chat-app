@@ -7,8 +7,8 @@ import { FilesMenu } from "./conversationInfo/FilesCard/FilesMenu";
 import MobileNavigation from "@/app/(chat)/_components/MobileNavigation";
 
 type RecievertHeaderProps = {
-    name? : string;
-    Reciever? : Reciever
+    name?: string;
+    Reciever?: Reciever;
 }
 type Reciever = {
     _id: Id<"chatMembers">;
@@ -17,31 +17,29 @@ type Reciever = {
     chatId: string;
     JoinedAt: number;
 }
-const RecievertHeader = ( {name , Reciever} : RecievertHeaderProps ) => {
-    const user = useQuery(api.users.getUserById, { id: Reciever?.userId ?? '' }); 
-    return ( 
+const RecievertHeader = ({ Reciever }: RecievertHeaderProps) => {
+    const user = useQuery(api.users.getUserById, { id: Reciever?.userId ?? '' });
+    return (
         <div className="flex items-center justify-between w-full bg-white p-6 border-b border-[#E2E8F0]">
             <div className="flex items-center gap-x-4">
-                <div className=" flex items-center justify-center gap-x-6">
-                    <div className=" md:hidden">
-                    <MobileNavigation />
+                <div className="flex items-center justify-center gap-x-6">
+                    <div className="md:hidden">
+                        <MobileNavigation />
                     </div>
-                    <Avatar className=" w-12 h-12 rounded-xl">
-                        <AvatarImage className=" rounded-xl" src={user?.imageUrl} alt="@shadcn" />
-                        <AvatarFallback className=" w-12 h-12 rounded-xl bg-red-400 flex items-center justify-center">
-                            {user ? user?.username.charAt(0) : name?.charAt(0)}
+                    <Avatar className="w-12 h-12 rounded-xl">
+                        <AvatarImage className="rounded-xl" src={user?.imageUrl} alt="@shadcn" />
+                        <AvatarFallback className="w-12 h-12 rounded-xl bg-red-400 flex items-center justify-center">
+                            {user?.username[0]}
                         </AvatarFallback>
                     </Avatar>
                 </div>
-                <span className=" text-sm md:text-base lg:text-lg xl:text-xl font-semibold capitalize">{user? user.username : name}</span>
-
+                <span className="text-sm md:text-base lg:text-lg xl:text-xl font-semibold capitalize">{user?.username}</span>
             </div>
-            <div className=" xl:hidden">
-            <FilesMenu />
+            <div className="xl:hidden">
+                <FilesMenu />
             </div>
-           
         </div>
-     );
+    );
 }
- 
+
 export default RecievertHeader;

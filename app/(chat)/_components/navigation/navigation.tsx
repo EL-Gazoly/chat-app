@@ -12,7 +12,7 @@ const Navigation = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const ref = useRef<HTMLDivElement>(null);
-  const { width = 0 } = useResizeObserver({ref})
+  const { width = 0 } = useResizeObserver({ ref });
 
   const isResizing = useRef(false);
   const sidebarRef = useRef<HTMLElement>(null);
@@ -96,12 +96,10 @@ const Navigation = () => {
         >
           <DoubleArrowLeftIcon className="w-6 h-6" />
         </div>
-          <div className=" flex  w-full h-full">
-            
-            <NavigationControlBar/>
-            <NavigationFriendsBar width={width} />
-
-          </div>
+        <div className="flex w-full h-full">
+          <NavigationControlBar/>
+          <NavigationFriendsBar width={width} />
+        </div>
         <div
           onMouseDown={handleMouseDown}
           onClick={resetWidth}

@@ -1,5 +1,4 @@
 "use client";
-
 import AttachIcon from '@/assets/chat/attach.svg';
 import Image from 'next/image';
 import {
@@ -64,13 +63,13 @@ const UploadFileModal = () => {
               }
             },
           });
-            setUploadRes((uploadRes) => [
-                ...uploadRes,
-                {
-                url: res.url,
-                filename: fileState.file.name,
-                },
-            ]);
+          setUploadRes((uploadRes) => [
+            ...uploadRes,
+            {
+              url: res.url,
+              filename: fileState.file.name,
+            },
+          ]);
           await uploadFile({
             chatId: conversationId,
             url: res.url,
@@ -84,9 +83,6 @@ const UploadFileModal = () => {
           })
           
           setOpen(false);
-          
-
-
           
         } catch (err) {
           updateFileProgress(fileState.key, 'ERROR');

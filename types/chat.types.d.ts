@@ -16,7 +16,7 @@ declare type chatMembers =  {
 }[] | undefined
 
 
-type reciever ={
+declare type reciever ={
     _id: Id<"users">;
     _creationTime: number;
     username: string;
@@ -24,3 +24,13 @@ type reciever ={
     clrekId: string;
     email: string;
 } | null | undefined
+
+declare type  messages = {
+    _id: Id<"messages">;
+    _creationTime: number;
+    chatId: string;
+    messageId: string;
+    senderId: string;
+    content: string;
+    createdAt: number;
+}[] | undefined
