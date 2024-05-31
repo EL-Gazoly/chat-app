@@ -13,7 +13,7 @@ type RecievertHeaderProps = {
 const RecievertHeader = ({ Reciever }: RecievertHeaderProps) => {
     const user = useQuery(api.users.getUserById, { id: Reciever?.clrekId ?? '' });
     return (
-        <div className="flex items-center justify-between w-full bg-white p-6 border-b border-[#E2E8F0]">
+        <div className="flex items-center justify-between w-full bg-white py-1 sm:py-2 md:py-3 lg:py-4  xl:py-6 px-6 border-b border-[#E2E8F0]">
             <div className="flex items-center gap-x-4">
                 <div className="flex items-center justify-center gap-x-6">
                     <div className="md:hidden">
