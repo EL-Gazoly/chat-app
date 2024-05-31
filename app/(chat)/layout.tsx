@@ -12,7 +12,9 @@ const ChatPageLayout = ({children} : {children : React.ReactNode}) => {
 
     return ( 
         <div className={cn("h-full flex gap-x-6", inter.className)}>
+            <div className=" hidden md:flex">
             <Navigation />
+            </div>
             <div className="flex-1">
                {children}
                <Toaster />

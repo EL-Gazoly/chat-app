@@ -78,6 +78,9 @@ body {
       @apply bg-background text-foreground;
     }
   }
+  .transition-transform {
+    transition: transform 0.4s ease-in-out;
+  }
 
   ::-webkit-scrollbar {
     width: 18px;

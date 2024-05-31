@@ -4,6 +4,8 @@ import { Id } from "@/convex/_generated/dataModel";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { FilesMenu } from "./conversationInfo/FilesCard/FilesMenu";
+import MobileNavigation from "@/app/(chat)/_components/MobileNavigation";
+
 type RecievertHeaderProps = {
     name? : string;
     Reciever? : Reciever
@@ -20,12 +22,17 @@ const RecievertHeader = ( {name , Reciever} : RecievertHeaderProps ) => {
     return ( 
         <div className="flex items-center justify-between w-full bg-white p-6 border-b border-[#E2E8F0]">
             <div className="flex items-center gap-x-4">
-                <Avatar className=" w-12 h-12 rounded-xl">
-                    <AvatarImage className=" rounded-xl" src={user?.imageUrl} alt="@shadcn" />
-                    <AvatarFallback className=" w-12 h-12 rounded-xl bg-red-400 flex items-center justify-center">
-                        {user ? user?.username.charAt(0) : name?.charAt(0)}
-                    </AvatarFallback>
-                </Avatar>
+                <div className=" flex items-center justify-center gap-x-6">
+                    <div className=" md:hidden">
+                    <MobileNavigation />
+                    </div>
+                    <Avatar className=" w-12 h-12 rounded-xl">
+                        <AvatarImage className=" rounded-xl" src={user?.imageUrl} alt="@shadcn" />
+                        <AvatarFallback className=" w-12 h-12 rounded-xl bg-red-400 flex items-center justify-center">
+                            {user ? user?.username.charAt(0) : name?.charAt(0)}
+                        </AvatarFallback>
+                    </Avatar>
+                </div>
                 <span className=" text-sm md:text-base lg:text-lg xl:text-xl font-semibold capitalize">{user? user.username : name}</span>
 
             </div>

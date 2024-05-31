@@ -4,10 +4,10 @@ import { setTab } from "@/store/TabSlice";
 import Logo from "@/assets/logo-Icon.svg";
 import ArchiveIcon from "./ArchiveIcon";
 import MessageIcon from "./MessageIcon";
-import SearchIcon from "./SearchIcon";
 import Image from "next/image";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 import { Authenticated, Unauthenticated } from "convex/react";
+import Link from "next/link";
 
 type TabType = "ARCHIVE" | "MESSAGE" | "SEARCH";
 
@@ -20,7 +20,7 @@ const NavigationControlBar = () => {
     };
 
     return (
-        <div className="overflow-y-hidden h-full z-10 min-w-[88px] flex flex-col justify-between items-center py-6 bg-white"
+        <Link href={"/"} className="overflow-y-hidden h-full z-10 min-w-[88px] flex flex-col justify-between items-center py-6 bg-white"
             style={{
                 boxShadow: "0px 0px 24px 0px rgba(0, 0, 0, 0.08)"
             }}
@@ -45,7 +45,7 @@ const NavigationControlBar = () => {
                     <SignInButton />
                 </Unauthenticated>
             </div>
-        </div>
+        </Link>
     );
 };
 
