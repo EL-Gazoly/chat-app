@@ -1,9 +1,9 @@
 "use client";
-import RecievertHeader from "./_components/RecieverHeader";
-import ChatPage from "./_components/Chat";
-import SendMessage from "./_components/sendMessage";
+import RecievertHeader from "../_components/RecieverHeader";
+import ChatPage from "../_components/Chat";
+import SendMessage from "../_components/sendMessage";
 import { useParams } from "next/navigation";
-import { chat, reciever } from "@/types/chat.types";
+import { reciever } from "@/types/chat.types";
 import ChatInfo from "@/app/(chat)/_components/ChatInfo";
 import { useRef, useEffect, useState } from "react";
 

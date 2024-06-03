@@ -1,4 +1,4 @@
-import MobileNavigation from "../_components/MobileNavigation";
+import MobileNavigation from "../../_components/MobileNavigation";
 
 const ConversationsPage = () => {
     return (
