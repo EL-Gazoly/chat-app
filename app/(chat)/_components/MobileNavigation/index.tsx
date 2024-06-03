@@ -2,8 +2,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useOnClickOutside } from 'usehooks-ts';
-import NavigationControlBar from "@/app/(chat)/_components/navigation/ControlBar";
-import NavigationFriendsBar from "@/app/(chat)/_components/navigation/FriendsBar";
+import NavigationControlBar from "@/app/(chat)/_components/ControlBar";
+import NavigationFriendsBar from "@/app/(chat)/_components/FriendsBar";
 import { usePathname } from 'next/navigation';
 
 const MobileNavigation = () => {

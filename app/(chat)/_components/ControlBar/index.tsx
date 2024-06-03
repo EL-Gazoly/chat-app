@@ -5,17 +5,14 @@ import Logo from "@/assets/logo-Icon.svg";
 import FriendsIcon from "./FriendsIcon";
 import MessageIcon from "./MessageIcon";
 import Image from "next/image";
-import { SignInButton, UserButton } from "@clerk/clerk-react";
-import { Authenticated, Unauthenticated } from "convex/react";
+import { UserButton } from "@clerk/clerk-react";
+import { Authenticated } from "convex/react";
 import Link from "next/link";
 
 type TabType = "FRIENDS" | "MESSAGE";
 
-type NavigationControlBarProps = {
-    extend?: () => void
-};
 
-const NavigationControlBar = ({extend}: NavigationControlBarProps) => {
+const NavigationControlBar = () => {
     const tab = useSelector((state: RootState) => state.tabs.tab);
     const dispatch = useDispatch<AppDispatch>();
 
@@ -45,9 +42,6 @@ const NavigationControlBar = ({extend}: NavigationControlBarProps) => {
                 <Authenticated>
                     <UserButton/>
                 </Authenticated>
-                <Unauthenticated>
-                    <SignInButton />
-                </Unauthenticated>
             </div>
         </Link>
     );

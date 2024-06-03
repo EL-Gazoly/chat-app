@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { useMediaQuery, useResizeObserver } from "usehooks-ts";
 import { DoubleArrowLeftIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { useRef, useState, useEffect } from "react";
-import NavigationControlBar from "./ControlBar";
-import NavigationFriendsBar from "./FriendsBar";
+import NavigationControlBar from "../ControlBar";
+import NavigationFriendsBar from "../FriendsBar";
 
 const Navigation = () => {
   const pathname = usePathname();
