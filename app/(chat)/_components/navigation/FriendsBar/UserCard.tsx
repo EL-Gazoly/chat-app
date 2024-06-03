@@ -58,8 +58,8 @@ const UserCard: React.FC<UserCardProps> = ({ chatId, width, reciever, messages }
       )}
       style={{ maxWidth: width }}
     >
-      <Avatar className="w-12 h-12 rounded-xl">
-        <AvatarImage className="w-12 h-12 rounded-xl" src={reciever?.imageUrl} />
+      <Avatar className="w-11 h-11 rounded-xl">
+        <AvatarImage className="w-11 h-11 rounded-xl" src={reciever?.imageUrl} />
         <AvatarFallback className="w-12 h-12 rounded-xl bg-red-100 font-semibold">
           {reciever?.username[0]}
         </AvatarFallback>

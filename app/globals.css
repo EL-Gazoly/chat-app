@@ -78,6 +78,9 @@ body {
       @apply bg-background text-foreground;
     }
   }
+  .cl-internal-tgducu, .cl-internal-ovdovs, .cl-footer {
+    display: none !important;
+  }
   .transition-transform {
     transition: transform 0.4s ease-in-out;
   }

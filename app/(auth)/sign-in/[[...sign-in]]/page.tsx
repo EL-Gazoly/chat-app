@@ -4,10 +4,6 @@ import * as Clerk from '@clerk/elements/common';
 import * as SignIn from '@clerk/elements/sign-in';
 import FormWrapper from '@/app/(auth)/_components/FormWrapper';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
-import GoogleIcon from '@/assets/auth/google.svg';
-import GithubIcon from '@/assets/auth/github.svg';
-import Image from 'next/image';
 export default function SignInPage() {
   return (
     <FormWrapper 
@@ -47,6 +43,7 @@ export default function SignInPage() {
             />
             <Clerk.FieldError className="mt-2 block text-xs text-rose-400" />
           </Clerk.Field>
+          
           <SignIn.Action submit className="w-full">
             <Button className="mt-4 w-full">Sign In</Button>
           </SignIn.Action>
@@ -60,32 +57,6 @@ export default function SignInPage() {
             </a>
           </p>
         </SignIn.Step>
-       
-          <div className="w-full my-8 grid grid-cols-3 items-center gap-x-2 text-xs text-center font-medium">
-            <Separator />
-            <span>Or sign in with</span>
-            <Separator />
-          </div>         
-           <div className="space-y-2">
-              <Clerk.Connection
-                name="google"
-                className='w-full'
-                >
-                  <Button className="w-full flex items-center gap-x-2 capitalize" variant="outline">
-                    <Image src={GoogleIcon} alt={"google-icon"} />
-                    <span>Google</span>
-                  </Button>
-              </Clerk.Connection>
-              <Clerk.Connection
-                name="github"
-                className='w-full'
-                >
-                  <Button className="w-full flex items-center gap-x-2 capitalize" variant="outline">
-                    <Image src={GithubIcon} alt={"github-icon"} />
-                    <span>Github</span>
-                  </Button>
-              </Clerk.Connection>
-            </div>
          
         <SignIn.Step
           name="verifications"

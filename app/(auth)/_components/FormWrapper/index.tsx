@@ -4,6 +4,10 @@ import Image from 'next/image';
 import LogoIcon from '@/assets/logo-Icon.svg';
 import LogoText from '@/assets/corporatica.svg';
 import BackButton from './BackButton';
+import { Separator } from '@/components/ui/separator';
+import { SignInButton } from "@clerk/clerk-react";
+import {  Unauthenticated } from "convex/react";
+import { Button } from '@/components/ui/button';
 
 type FormWrapperProps = {
   children: React.ReactNode;
@@ -28,6 +32,23 @@ const FormWrapper = ({
         <LogoSection />
         <h4 className="text-lg md:text-xl font-semibold leading-7">{headerLabel}</h4>
         <div className="w-full mt-2">{children}</div>
+        <div className="w-full my-4 grid grid-cols-3 items-center gap-x-2 text-xs text-center font-medium">
+            <Separator />
+            <span>Or sign in with</span>
+            <Separator />
+          </div>         
+
+            <div className=" w-full flex items-center justify-center cursor-pointer ">
+               
+                <Unauthenticated>
+                <SignInButton mode="modal" signUpForceRedirectUrl={"/"}>
+                    <Button size="lg" variant={"outline"}>
+                        Your Social Account
+                    
+                    </Button>
+                </SignInButton>
+                </Unauthenticated>
+            </div>
         <BackButton text={backButtonText} label={backButtonLabel} href={backButtonHref} />
       </div>
     </div>
