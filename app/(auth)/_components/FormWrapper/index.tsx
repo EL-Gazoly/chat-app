@@ -42,8 +42,8 @@ const FormWrapper = ({
                
                 <Unauthenticated>
                 <SignInButton mode="modal" signUpForceRedirectUrl={"/"}>
-                    <Button size="lg" variant={"outline"}>
-                        Your Social Account
+                    <Button size="lg" variant={"outline"} className=' w-full border border-brand-primary text-brand-primary'>
+                      Third party
                     
                     </Button>
                 </SignInButton>
