@@ -1,5 +1,5 @@
 "use client";
-import AuthCover from "@/app/(auth)/AuthCover";
+import AuthCover from "@/app/(auth)/_components/AuthCover";
 import { useConvexAuth } from "convex/react";
 import { redirect } from 'next/navigation'
 const AuthPageLayout = ({children} : {children : React.ReactNode}) => {
