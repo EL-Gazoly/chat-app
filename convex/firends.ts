@@ -23,25 +23,39 @@ export const addFriend = mutation({
             throw new Error("User not found");
         }
         const friendId = friend.clrekId;
+        if (userId === friendId) {
+            throw new Error("You can't add yourself as a friend");
+        }
       // check if friend request already exists
       const friendRequestExists = await ctx.db
-      .query("friends")
-      .withIndex("by_friendId", (q) => q.eq("friendId", friendId))
-      .filter((f : any) => f.userId !== userId)
-      .filter((f : any) => f.status !== "pending")
-      .filter((f : any) => f.status !== "accepted")
-      .collect();
-      console.log("this is friendRequestExists", friendRequestExists);
-      if (friendRequestExists.length > 0) {
-        throw new Error("Friend request already exists");
-      }
-     const friendRequest =  await ctx.db.insert('friends', {
-        friendRequest: id,
-        userId: userId,
-        friendId: friendId,
-        status: "pending",
-      });
-      console.log("this is friendRequest", friendRequest);
+        .query("friends")
+        .withIndex("by_friendId", (q) => q.eq("friendId", friendId))
+        .collect();
+
+        friendRequestExists.forEach((element) => {
+            if (element.userId === userId && element.status !== "rejected") {
+                throw new Error("Friend request already exists");
+            }
+        });
+       const userAlreadySentRequest = await ctx.db
+        .query("friends")
+        .withIndex("by_userId", (q) => q.eq("userId", friendId))
+        .collect();
+        userAlreadySentRequest.forEach((element) => {
+          console.log("element", element)
+            if (element.friendId === userId && element.status === "pending") {
+                throw new Error("This user already sent you a friend request");
+            }
+        });
+
+       
+       
+        const friendRequest = await ctx.db.insert('friends', {
+          friendRequest: id,
+          userId: userId,
+          friendId: friendId,
+          status: "pending",
+        });
         return friendRequest;
     }
   });

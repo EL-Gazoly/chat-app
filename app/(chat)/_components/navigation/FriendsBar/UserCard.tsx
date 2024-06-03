@@ -68,7 +68,7 @@ const UserCard: React.FC<UserCardProps> = ({ chatId, width, reciever, messages }
         <span className="col-span-2 text-black line-clamp-1 uppercase">{reciever?.username}</span>
         {width && width > 338 && <span className="justify-self-end text-xs text-[#B2B2B2]">{messages?.length && messages.length > 0? getTimeDifference( messages[0]?.createdAt ) : ""}</span>}
         <span className="col-span-3 text-black/40 line-clamp-1">
-            {messages?
+            {messages && messages.length > 0?
             messages[0]?.senderId === user?.id ? 'You: ' + messages[0]?.content : reciever?.username + ': ' +  messages[0]?.content
             :
              ''}

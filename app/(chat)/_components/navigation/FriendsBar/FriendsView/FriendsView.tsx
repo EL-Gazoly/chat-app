@@ -8,7 +8,6 @@ const FriendsView = ({ width }: { width: number }) => {
     const pendingFriends = friends?.filter((friend) => friend.status === "pending");
     const acceptedFriends = friends?.filter((friend) => friend.status === "accepted");
 
-    console.log(friends);
 
     return (
         <div className='flex flex-col mt-5 px-4 gap-y-7'>

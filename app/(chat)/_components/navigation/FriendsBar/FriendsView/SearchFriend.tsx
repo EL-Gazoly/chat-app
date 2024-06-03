@@ -46,7 +46,13 @@ const SearchFriend = () => {
         <DialogHeader>
           <DialogTitle>Search Friend</DialogTitle>
           <DialogDescription className="mt-2">
-            <Input placeholder='Search Friend by email' onChange={(e) => setUserEmail(e.target.value)} />
+            <Input placeholder='Search Friend by email' onChange={(e) => setUserEmail(e.target.value)} className=" text-text-primary" 
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSearch();
+                }
+              }}
+            />
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
