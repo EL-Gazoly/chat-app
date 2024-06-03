@@ -42,7 +42,7 @@ const FormWrapper = ({
                
                 <Unauthenticated>
                 <SignInButton mode="modal" signUpForceRedirectUrl={"/"}>
-                    <Button size="lg" variant={"outline"} className=' w-full border border-brand-primary text-brand-primary'>
+                    <Button size="lg" variant={"outline"} className=' w-full border border-brand-primary text-brand-primary hover:text-brand-primary'>
                       Third party
                     
                     </Button>
